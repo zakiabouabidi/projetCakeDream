@@ -1,0 +1,87 @@
+<div class="card border-primary mb-3">
+    <div class="card-header bg-primary text-white ">  
+        <p  *ngIf="!produit.id; else up">Ajout Produit</p>
+      <ng-template #up></ng-template>
+    </div>
+
+    <div class="card-body">
+        <h3 *ngIf="!produit.id; else update">Ajout Produit</h3>
+        <ng-template #update>
+            <h3>Update Produit</h3>
+        </ng-template>
+        <!--<form  (ngSubmit)="onAddContact(form)" #form="ngForm">-->
+
+        <form (ngSubmit)="onSubmit()" #form="ngForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" #name="ngModel"
+                [ngClass]="{'is-invalid':name.invalid && name.dirty,'is-valid':name.valid}"
+                required   [(ngModel)]="produit.name">
+                <div *ngIf="name.invalid && name.dirty" class="invalid-feedback">
+                    tappez votre nom de produit.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="prix">Prix</label>
+                <input type="number" class="form-control" name="prix" #prix="ngModel" 
+                [ngClass]="{'is-invalid':prix.invalid && prix.dirty,'is-valid':prix.valid}"
+                required  [(ngModel)]="produit.prix">
+                <div *ngIf="prix.invalid && prix.dirty" class="invalid-feedback">
+                    tappez votre prix.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="prix">Quantite</label>
+                <input type="number" class="form-control" name="quantite" 
+                [ngClass]="{'is-invalid':quantite.invalid && quantite.dirty,'is-valid':quantite.valid}"
+                required  #quantite="ngModel" [(ngModel)]="produit.quantite">
+                <div *ngIf="quantite.invalid && quantite.dirty" class="invalid-feedback">
+                    tappez votre  quantite.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name">Description</label>
+                <textarea class="form-control" id="description" rows="3" name="description" #description="ngModel"
+                [ngClass]="{'is-invalid':description.invalid && description.dirty,'is-valid':description.valid}"
+                required   [(ngModel)]="produit.description"></textarea>
+                <div *ngIf="description.invalid && description.dirty" class="invalid-feedback">
+                 taper votre description
+                </div>
+            </div>
+            <div class="form-group">
+                <fieldset class="form-group row">
+                    <legend class="col-form-label col-sm-2 float-sm-left pt-0">Catégorie</legend>
+                    <div class="col-sm-10">
+                        <div *ngFor="let cat of categories">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="categorie" [value]="cat.id" #categorie="ngModel"
+                                [ngClass]="{'is-invalid': categorie.invalid && categorie.dirty, 'is-valid': categorie.valid}"
+                                required [(ngModel)]="produit.categorieID">
+                                <label class="form-check-label" for="gridRadios1">
+                                    {{ cat.name_Categorie }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            
+           
+            <div class="form-group">
+                <!-- Display the contact's image if the contact has an id (update use case). Use a default avatar if no image is available. -->
+                <!-- <img *ngIf="contact.id"
+                    [src]="contact.image ? baseUrl + 'storage/files/' + contact.image : '../../assets/images/default-avatar.jpg'"
+                    class="img-responsive img-rounded" style="max-height: 50px; max-width: 50px;" alt="photo">
+                 -->
+                <!-- File input for selecting a new image, styled as a button. -->
+                
+                </div>
+                
+                <!-- Display a message if there is one, for example, success or error messages. -->
+               
+            
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid"> Engregistrer </button>
+        </form>
+    </div>
+</div>
+<button class="btn btn-primary" (click)="onCategorie()">Go to Contacts</button>

@@ -1,0 +1,28 @@
+<div class="card border-primary mb-3">
+    <div class="card-header bg-primary text-white "> Produit Detail Component</div>
+    <div class="card-body">
+        <div *ngIf="produit ; else noContacts">
+            <h3>Produit detail</h3>
+            <div class="card" style="width: 25em;">
+                <img src="{{'baseURL'+produit.image}}" alt="{{ produit.name }}" class="card-image-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{produit.name}}</h5>
+                  
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Name :</strong> {{produit.name}}.</li>
+                    <li class="list-group-item"><strong>Prix : </strong>{{produit.prix}}</li>
+                    <li class="list-group-item"><strong>quantite : </strong>{{produit.quantite}}</li>
+                    <li class="list-group-item"><strong>description : </strong>{{produit.description}}</li>
+                    <li class="list-group-item"><strong>Categorie : </strong>{{produit.categorienamme}}</li>
+                </ul>
+            </div>
+        </div>
+        <ng-template #noContacts>
+            <p>Produit n'existe pas </p>
+        </ng-template>
+    </div>
+</div>
+<button class="btn btn-info" (click)="onAddProduit()" >
+    ajout Produit
+</button>

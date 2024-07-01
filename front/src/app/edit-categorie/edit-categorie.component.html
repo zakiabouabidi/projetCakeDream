@@ -1,0 +1,51 @@
+<div class="card border-primary mb-3">
+    <div class="card-header bg-primary text-white "> 
+        <p  *ngIf="!categorie.id; else up">Ajout Categorie</p>  
+        <ng-template #up>
+            <p>Modifier Categorie</p>
+        </ng-template></div>
+   
+    <div class="card-body" >
+        <h3 *ngIf="!categorie.id; else update">Ajout Categorie</h3>
+        <ng-template #update>
+            <h3>Modifier Categorie</h3>
+        </ng-template>
+        <!--<form  (ngSubmit)="onAddContact(form)" #form="ngForm">-->
+
+        <form (ngSubmit)="onSubmit()" #form="ngForm">
+            <div class="form-group">
+                <label for="name">Nom de Categorie</label>
+                <input type="text" class="form-control" name="name" 
+                [ngClass]="{'is-invalid':name.invalid && name.dirty,'is-valid':name.valid}"
+                required  #name="ngModel" [(ngModel)]="categorie.name_Categorie">
+                <div *ngIf="name.invalid && name.dirty" class="invalid-feedback">
+                    tappez votre nom de categorie.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name">Description</label>
+                <textarea class="form-control" id="description" rows="3" name="description"
+                [ngClass]="{'is-invalid':description.invalid && description.dirty,'is-valid':description.valid}"
+                 required #description="ngModel" [(ngModel)]="categorie.description"></textarea>
+                <div *ngIf="description.invalid && description.dirty" class="invalid-feedback">
+                    tappez votre description.
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Display the contact's image if the contact has an id (update use case). Use a default avatar if no image is available. -->
+                <!-- <img *ngIf="contact.id"
+                    [src]="contact.image ? baseUrl + 'storage/files/' + contact.image : '../../assets/images/default-avatar.jpg'"
+                    class="img-responsive img-rounded" style="max-height: 50px; max-width: 50px;" alt="photo">
+                 -->
+                <!-- File input for selecting a new image, styled as a button. -->
+                
+                </div>
+                
+                <!-- Display a message if there is one, for example, success or error messages. -->
+               
+            
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid ">Enregistrer </button>
+        </form>
+    </div>
+</div>
+<button class="btn btn-primary" (click)="onCategorie()">Go to Contacts</button>

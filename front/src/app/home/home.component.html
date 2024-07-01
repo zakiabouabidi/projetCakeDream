@@ -1,0 +1,45 @@
+
+<h1 class="text-center">Nos Produits</h1>
+    <div class="row">
+        <div class="col-md-4 mt-3" *ngFor="let produit of produits">
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">
+                    <img class="card-img-top" src="{{ 'baseURL' + produit.image }}" alt="{{ produit.name }}">
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ produit.name }}</p>
+                    <p class="card-text">Prix: {{ produit.prix }}</p>
+                    <p class="card-text">Quantité: {{ produit.quantite }}</p>
+                    <p class="card-text">Description: {{ produit.description }}</p>
+                    <p class="card-text">Catégorie: {{ produit.categorienamme }}</p>
+                    <p class="card-text">
+                        <a routerLink="/produits/{{ produit.id }}" class="btn btn-success m">Détail</a>
+                        <a routerLink="/produits/edit/{{ produit.id }}" class="btn btn-warning">Commander</a>
+                    </p>
+                </div>
+            
+        </div>
+    </div>
+</div>
+<br><br><br>
+<h1 class="text-center" >Nos Catégories</h1>
+
+
+    <div class="row">
+        <div class="col-md-4 mt-3" *ngFor="let categorie of categories">
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <!-- <div class="card-header">
+                    <img class="card-img-top" src="{{ 'baseURL' + categorie.image }}" alt="{{ categorie.name_Categorie }}">
+                </div> -->
+                <div class="card-body">
+                    <p class="card-text">{{ categorie.name_Categorie }}</p>
+                    <p class="card-text">Description: {{ categorie.description }}</p>
+                    <p class="card-text">
+                        <a routerLink="/produits/{{ categorie.id }}" class="btn btn-success m">Détail</a>
+                        <a routerLink="/produits/edit/{{ categorie.id }}" class="btn btn-warning">Commander</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+

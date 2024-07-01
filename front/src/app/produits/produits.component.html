@@ -1,0 +1,51 @@
+<button class="btn btn-info" (click)="onAddProduit()" >
+    ajout Produit
+</button>
+<div class="card border-primary mt-3">
+    <div class="card-header bg-primary text-white">
+       Nos Produit
+    </div>
+    <div class="card-body">
+        <div *ngIf="produits.length>0;else noContacts">
+            <h3>Liste de produit</h3>
+              <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <th scope="col">image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Quantite</th>
+                    <th scope="col">Desc</th>
+                    <th scope="col">Categorie</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let produit of produits">
+                        <td><img src="{{'baseURL'+produit.image}}" alt="{{ produit.name }}" style="max-width: 100px; max-height: 100px;"></td>
+                        <td>{{produit.name}}</td>
+                        <td>{{produit.prix}}</td>
+                        <td>{{produit.quantite}}</td>
+                        <td>{{produit.description}}</td>
+                        <td >{{produit.categorienamme}}</td>
+                        <td><a routerLink="/produits/{{produit.id}}"  class="btn btn-success">Detail</a></td>
+                        <td><a routerLink="/produits/edit/{{produit.id}}"class="btn btn-warning">Modifier</a></td>
+                        <td><button class="btn btn-danger" (click)="delateProduit(produit.id)" > Supprimer</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    
+        
+       
+        <ng-template #noContacts>
+            <p class="alert alert-warning">
+                No contact found!
+            </p>
+           
+        </ng-template>
+
+    </div>
+

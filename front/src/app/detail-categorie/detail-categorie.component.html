@@ -1,0 +1,26 @@
+<button class="btn btn-info" (click)="onAddCategorie()" >
+    ajout Categorie
+</button>
+<div class="card border-primary mb-3 mt-3">
+    <div class="card-header bg-primary text-white "> Categorie Detail Component</div>
+    <div class="card-body">
+        <div *ngIf="categorie ; else noContacts">
+            <h3>Produit detail</h3>
+            <div class="card" style="width: 25em;">
+                <!-- <img [src]="categorie.image" alt="{{ categorie.name }}" style="max-width: 100px; max-height: 100px;"> -->
+                <div class="card-body">
+                    <h5 class="card-title">{{categorie.name_Categorie}}</h5>
+                  
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Name :</strong> {{categorie.name_Categorie}}.</li>
+                    <li class="list-group-item"><strong>description : </strong>{{categorie.description}}</li>
+                </ul>
+            </div>
+        </div>
+        <ng-template #noContacts>
+            <p>Produit n'existe pas </p>
+        </ng-template>
+    </div>
+</div>
+
