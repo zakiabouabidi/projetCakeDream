@@ -8,10 +8,12 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.example.cakedreamstore.business.services.CategorieService;
+import com.example.cakedreamstore.business.services.FilesStorageService;
 import com.example.cakedreamstore.business.services.CategorieService;
 import com.example.cakedreamstore.dao.entites.Categorie;
 import com.example.cakedreamstore.dao.entites.Categorie;
 import com.example.cakedreamstore.dao.repositories.CategorieRepository;
+import com.example.cakedreamstore.exception.DuplicateCategorieException;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -20,8 +22,11 @@ import jakarta.transaction.Transactional;
 public class CategorieServiceImpl  implements CategorieService{
 
   final CategorieRepository categorieRepository;
-  public CategorieServiceImpl(CategorieRepository categorieRepository){
+   final FilesStorageService filesStorageService;
+  public CategorieServiceImpl(CategorieRepository categorieRepository, 
+  FilesStorageService filesStorageService){
      this.categorieRepository=categorieRepository;
+     this.filesStorageService = filesStorageService;
   }
 
   
@@ -43,26 +48,32 @@ public class CategorieServiceImpl  implements CategorieService{
                 .orElseThrow(() -> new EntityNotFoundException(id + " not found"));
     }
   @Override
-  public Categorie addCategorie(Categorie categorie) {
+  public Categorie addCategorie(Categorie categorie) throws DuplicateCategorieException{
     if(categorie==null){
-      return null;
-  }
+      throw new IllegalArgumentException("L'ID  ne peuvent pas être nul");
+     
+  }try{
   return this.categorieRepository.save(categorie);
+  }catch(DataIntegrityViolationException e){
+    throw new DuplicateCategorieException(
+      "cette categorie est deja existe" );
   }
+
+}
 
   
   @Override
-  public Categorie updateCategorie(Long id, Categorie categorie) {
+  public Categorie updateCategorie(Long id, Categorie categorie) throws DuplicateCategorieException{
       if (id == null || categorie == null) {
-          throw new IllegalArgumentException("ID and produit cannot be null");
+          throw new IllegalArgumentException("L'ID et le produit ne peuvent pas être null");
       }
-      Categorie existingCategorie = getCategorieById(id);
-  
-      existingCategorie.setName_Categorie(categorie.getName_Categorie());
-      existingCategorie.setDescription(categorie.getDescription());
-  
-      return categorieRepository.save(existingCategorie);
-  }
+   getCategorieById(id);
+  try{
+    return categorieRepository.save(categorie);
+  }catch(DataIntegrityViolationException e){
+    throw new DuplicateCategorieException(
+      "cette produit est deja existe" );
+  }}
 
   @Override
   public void deleteCategorieById(Long id) {
@@ -71,6 +82,13 @@ public class CategorieServiceImpl  implements CategorieService{
   }
     this.categorieRepository.deleteById(id);
 
+  }
+
+
+  @Override
+  public Categorie updateCategorieImage(Long id, String filename) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'updateCategorieImage'");
   }
     
 

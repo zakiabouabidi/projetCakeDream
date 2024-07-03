@@ -4,7 +4,8 @@ import { Inject, Injectable } from '@angular/core';
 import { Produit } from '../models/produit';
 import { Categorie } from '../models/categorie';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
+import { ProcessHttpmsgService } from './process-httpmsg.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class ProduitsService {
     })
   }
   produits: Produit[] = [ ];
-  constructor(private httpClient:HttpClient, @Inject('baseURL') public baseURL:any) { }
+  constructor(private httpClient:HttpClient,
+    private processHTTPMsgService : ProcessHttpmsgService,
+     @Inject('baseURL') public baseURL:any
+     ) { }
   
 
 //sans back
@@ -25,7 +29,8 @@ export class ProduitsService {
   // }
 
   getAllProduits():Observable<Produit[]>{
-    return this.httpClient.get<Produit[]>(this.baseURL+"produits");
+    return this.httpClient.get<Produit[]>(this.baseURL+"produits").pipe
+    (catchError(this.processHTTPMsgService.handleError));
   }
     
   getProduitById(id:number):Observable<Produit>{

@@ -1,11 +1,11 @@
 
 <h1 class="text-center">Nos Produits</h1>
     <div class="row">
-        <div class="col-md-4 mt-3" *ngFor="let produit of produits">
+        <div class="col-md-4 mt-3" *ngFor="let produit of produits.slice(0, 6)">
             <div class="card bg-light mb-3" style="max-width: 18rem;">
                 <div class="card-header">
-                    <img class="card-img-top" src="{{ 'baseURL' + produit.image }}" alt="{{ produit.name }}">
-                </div>
+                    <img [src]="produit.image?baseURL+'storage/files/'+produit.image:'../../assets/images/default-avatar.jpg'" class="card-img-top" alt="...">
+               </div>
                 <div class="card-body">
                     <p class="card-text">{{ produit.name }}</p>
                     <p class="card-text">Prix: {{ produit.prix }}</p>
@@ -13,9 +13,10 @@
                     <p class="card-text">Description: {{ produit.description }}</p>
                     <p class="card-text">Catégorie: {{ produit.categorienamme }}</p>
                     <p class="card-text">
-                        <a routerLink="/produits/{{ produit.id }}" class="btn btn-success m">Détail</a>
-                        <a routerLink="/produits/edit/{{ produit.id }}" class="btn btn-warning">Commander</a>
+                        <a routerLink="/produits/{{ produit.id }}" class="btn btn-success mr-2">Détail</a>
+                        <button class="btn btn-danger" (click)="addToPanier(produit)">Ajouter au panier</button>
                     </p>
+                    
                 </div>
             
         </div>

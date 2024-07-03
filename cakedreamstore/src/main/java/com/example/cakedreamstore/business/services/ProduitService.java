@@ -15,6 +15,6 @@ public interface ProduitService {
     Produit updateProduit(Long id,Produit produit)throws Exception;
     //Delete
     void deleteProduitById(Long id);
-
+    Produit updateProduitImage (Long id,String filename);
 
 }

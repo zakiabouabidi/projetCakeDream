@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Produit } from '../models/produit';
 import { ProduitsService } from '../services/produits.service';
 import { Categorie } from '../models/categorie';
+import { PanierService } from '../services/panier.service';
 
 @Component({
   selector: 'app-produits',
@@ -11,11 +12,15 @@ import { Categorie } from '../models/categorie';
 })
 export class ProduitsComponent implements OnInit{
  
-  produits:Produit[]=[ ];
+  produits!:Produit[];
   produit:Produit|undefined;
    idProduit:any;
+   errMsg!:string;
+   isWaiting:boolean=true;
+   isWaitingDelete: boolean = false;
   constructor(private router:Router, 
     private produitService : ProduitsService,
+    private panierService: PanierService,
     private route:ActivatedRoute,@Inject('baseURL') public baseURL:any
    ){}
   
@@ -23,16 +28,18 @@ export class ProduitsComponent implements OnInit{
     //sans backend 
     //this.produits=this.produitService.getAllProduits();
    this.produitService.getAllProduits().subscribe({
-    next:(produits:Produit[])=>{this.produits=produits}
+    next:(produits:Produit[])=>{this.produits=produits;this.isWaiting=false; this.errMsg=""},
+     error:(err)=>{this.produits=[],this.isWaiting=false,this.errMsg=err}
    })
-     this.idProduit= this.route.snapshot.params['id'];
+     //this.idProduit= this.route.snapshot.params['id']
       }
 
   delateProduit(id:number){
+    this.isWaitingDelete = true
    this.produitService.delateProduit(id).subscribe(
     {
       next:(res:any)=>
-        {
+        { this.isWaitingDelete = false
           let index=this.produits.findIndex(produit=>produit.id===id);
           if(index !=-1){
             this.produits.splice(index,1);
@@ -44,7 +51,13 @@ export class ProduitsComponent implements OnInit{
     this.router.navigateByUrl('/produits/edit/-1')
   }
 
- 
+  confirmDelete(id: number): void {
+    const confirmDelete = confirm("Êtes-vous sûr de vouloir supprimer cette catégorie ?");
+
+    if (confirmDelete) {
+      this.delateProduit(id);
+    }
+  }
   onCategorie(){
     this.router.navigate(['/categories',{name:'cake fraise'}]);
     //ou

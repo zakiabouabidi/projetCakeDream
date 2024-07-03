@@ -7,13 +7,15 @@ import lombok.Builder;
 public record CategorieSummaryDTO(
     Long id,
     String name_Categorie,
-    String description) {
+    String description,
+    String image) {
 
   public static CategorieSummaryDTO toCategorieSummaryDTO(Categorie categorie){
    CategorieSummaryDTO categorieSummaryDTO=CategorieSummaryDTO.builder()
                 .id(categorie.getId())
                 .name_Categorie(categorie.getName_Categorie())
                 .description(categorie.getDescription())
+                .image(categorie.getImage())
                 .build();
                 return categorieSummaryDTO;
   }
@@ -23,6 +25,7 @@ public record CategorieSummaryDTO(
          .id(categorieSummaryDTO.id())
          .name_Categorie(categorieSummaryDTO.name_Categorie())
          .description(categorieSummaryDTO.description())
+         .image(categorieSummaryDTO.image())
          .build();
 
          return categorie;

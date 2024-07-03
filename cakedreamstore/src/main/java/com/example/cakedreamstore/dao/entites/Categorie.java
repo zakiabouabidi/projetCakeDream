@@ -29,9 +29,10 @@ public class Categorie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-    @Column( nullable = false) 
+    @Column( nullable = false,unique = true) 
     private String name_Categorie;
     private String description;
+    private String image;
 @OneToMany(mappedBy = "categorie" ,cascade = CascadeType.ALL)
     private List<Produit> produit;
     

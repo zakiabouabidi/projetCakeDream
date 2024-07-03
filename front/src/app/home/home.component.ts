@@ -4,6 +4,7 @@ import { ProduitsService } from '../services/produits.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategorieService } from '../services/categorie.service';
 import { Categorie } from '../models/categorie';
+import { PanierService } from '../services/panier.service';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit{
   constructor(private router:Router, 
     private produitService : ProduitsService, 
     private categorieService: CategorieService,
+    private panierService: PanierService,
     private route:ActivatedRoute,@Inject('baseURL') 
     public baseURL:any
    ){}
@@ -37,6 +39,11 @@ export class HomeComponent implements OnInit{
      })
     this.idCategorie= this.route.snapshot.params['id'];
   } 
+
+  addToPanier(produit: Produit) {
+    this.panierService.addToPanier(produit);
+   
+  }
       }
 
  

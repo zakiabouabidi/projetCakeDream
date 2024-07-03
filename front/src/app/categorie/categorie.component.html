@@ -24,7 +24,7 @@
                         
                         <td><a routerLink="/categories/{{categorie.id}}"  class="btn btn-success">Detail</a></td>
                         <td><a routerLink="/categories/edit/{{categorie.id}}"class="btn btn-warning">Modifier</a></td>
-                        <td><button class="btn btn-danger" (click)="delateCategorie(categorie.id)" > Supprimer</button>
+                        <td><button class="btn btn-danger" (click)="confirmDelete(categorie.id)" (click)="delateCategorie(categorie.id)"  [disabled]="isWaitingDelete"> Supprimer</button>
                         </td>
                     </tr>
                 </tbody>
@@ -32,12 +32,22 @@
         </div>
         </div>
     
-        
+        <div *ngIf="isWaitingDelete">
+            <span  class="spinner-border" role="status"></span>
+            <!-- <h4>Suppression ... Veuillez patienter </h4> -->
+           </div>
+        <div [hidden] ="!isWaiting">
+            <div class="spinner-border"role="status"></div>
        
+       <h4>Veuillez patienter !</h4> 
+    </div >
         <ng-template #noContacts>
             <p class="alert alert-warning">
-                No contact found!
+                Aucun contact trouvé !
             </p>
+            <div class="alert alert-danger">
+                <strong>Erreur! </strong>{{errMsg}}
+            </div>
            
         </ng-template>
 

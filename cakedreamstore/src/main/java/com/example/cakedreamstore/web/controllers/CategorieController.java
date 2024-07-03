@@ -17,6 +17,7 @@ import com.example.cakedreamstore.business.services.CategorieService;
 import com.example.cakedreamstore.business.services.ProduitService;
 import com.example.cakedreamstore.dao.entites.Categorie;
 import com.example.cakedreamstore.dao.entites.Produit;
+import com.example.cakedreamstore.exception.DuplicateCategorieException;
 import com.example.cakedreamstore.web.dto.CategorieSummaryDTO;
 import com.example.cakedreamstore.web.dto.ProduitSummaryDTO;
 @RestController
@@ -51,14 +52,14 @@ public class CategorieController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> addCategorie(@RequestBody CategorieSummaryDTO categorieSummaryDTO) {
+    public ResponseEntity<?> addCategorie(@RequestBody CategorieSummaryDTO categorieSummaryDTO) throws  DuplicateCategorieException{
          Categorie categorie = CategorieSummaryDTO.fromCategorieSummaryDTO(categorieSummaryDTO);
         return new ResponseEntity<>(this.categorieService.addCategorie(categorie), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     
-   public ResponseEntity<?> updateCategorie(@PathVariable Long id, @RequestBody CategorieSummaryDTO categorieSummaryDTO) throws Exception {
+   public ResponseEntity<?> updateCategorie(@PathVariable Long id, @RequestBody CategorieSummaryDTO categorieSummaryDTO) throws DuplicateCategorieException {
         Categorie categorie = CategorieSummaryDTO.fromCategorieSummaryDTO(categorieSummaryDTO);
         Categorie SavedCategory =this.categorieService.updateCategorie(id, categorie);
         return new ResponseEntity<>(CategorieSummaryDTO.toCategorieSummaryDTO(SavedCategory), HttpStatus.OK);

@@ -8,28 +8,31 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './detail-categorie.component.html',
   styleUrls: ['./detail-categorie.component.css']
 })
-export class DetailCategorieComponent implements OnInit{
+export class DetailCategorieComponent implements OnInit {
 
   categorie: Categorie | undefined;
   idcategorie: any;
+
   constructor(private categorieService: CategorieService,
-    private router: Router,private route: ActivatedRoute  ,
-    @Inject('baseURL') public baseURL:any) { }
+    private router: Router, private route: ActivatedRoute,
+    @Inject('baseURL') public baseURL: any) { }
+    
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.idcategorie = (params.get('id'));
       this.categorieService.getCategorieById(this.idcategorie).subscribe(
-        (categorie)=>{this.categorie=categorie }
+        (categorie) => { this.categorie = categorie }
 
-         )    });
-  
+      )
+    });
+
   }
 
 
 
-  
-    onAddCategorie() {
-      this.router.navigateByUrl('/categories/edit/-1')
-    }
+
+  onAddCategorie() {
+    this.router.navigateByUrl('/categories/edit/-1')
   }
+}
 

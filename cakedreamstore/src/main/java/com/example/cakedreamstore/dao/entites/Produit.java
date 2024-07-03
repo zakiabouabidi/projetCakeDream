@@ -32,7 +32,7 @@ public class Produit {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
     
         private Long id;
-        @Column( nullable = false)
+        @Column( nullable = false,unique = true)
         private String name;
         private double prix;
         private int quantite;
@@ -46,7 +46,7 @@ public class Produit {
   //  private List<String> gout;
         private String image;
         @ManyToOne()
-        @JoinColumn(name="id_categorie")
+        @JoinColumn(name="id_categorie") 
         private Categorie categorie;
 
         

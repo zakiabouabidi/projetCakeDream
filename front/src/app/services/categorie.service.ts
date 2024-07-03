@@ -1,14 +1,16 @@
 import { Inject, Injectable, OnInit } from '@angular/core';
 import { Categorie } from '../models/categorie';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ProcessHttpmsgService } from './process-httpmsg.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategorieService {
   //private baseUtRL = 'http://localhost:3000/api/categories';
-  constructor(private httpClient:HttpClient, @Inject('baseURL') public baseURL:any) { }
+  constructor(private httpClient:HttpClient, @Inject('baseURL') public baseURL:any,
+  private processHTTPMsgService : ProcessHttpmsgService) { }
  
   categories:Categorie[]=[];
   readonly httpOptions={
@@ -19,7 +21,8 @@ export class CategorieService {
   
   
   getAllCategories():Observable<Categorie[]>{
-    return this.httpClient.get<Categorie[]>(this.baseURL+"categories")
+    return this.httpClient.get<Categorie[]>(this.baseURL+"categories").pipe
+    (catchError(this.processHTTPMsgService.handleError));
   }
     
   getCategorieById(id:number):Observable<Categorie>{

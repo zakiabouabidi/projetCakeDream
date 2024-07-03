@@ -12,6 +12,7 @@ export class DetailProduitComponent implements OnInit {
 
   produit: Produit | undefined;
   idContact: any;
+  errName: string="";
 // Utiliser ActivatedRoute pour obtenir les paramètres d'URL 
   constructor(private produitService: ProduitsService,
     private router: Router,private route: ActivatedRoute ,@Inject('baseURL') public baseURL:any) { }

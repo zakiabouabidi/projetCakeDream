@@ -1,51 +1,69 @@
-<button class="btn btn-info" (click)="onAddProduit()" >
-    ajout Produit
-</button>
+<button class="btn btn-info" (click)="onAddProduit()">Ajouter Produit</button>
 <div class="card border-primary mt-3">
-    <div class="card-header bg-primary text-white">
-       Nos Produit
-    </div>
+    <div class="card-header bg-primary text-white">Nos Produits</div>
     <div class="card-body">
-        <div *ngIf="produits.length>0;else noContacts">
-            <h3>Liste de produit</h3>
-              <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <th scope="col">image</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Quantite</th>
-                    <th scope="col">Desc</th>
-                    <th scope="col">Categorie</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let produit of produits">
-                        <td><img src="{{'baseURL'+produit.image}}" alt="{{ produit.name }}" style="max-width: 100px; max-height: 100px;"></td>
-                        <td>{{produit.name}}</td>
-                        <td>{{produit.prix}}</td>
-                        <td>{{produit.quantite}}</td>
-                        <td>{{produit.description}}</td>
-                        <td >{{produit.categorienamme}}</td>
-                        <td><a routerLink="/produits/{{produit.id}}"  class="btn btn-success">Detail</a></td>
-                        <td><a routerLink="/produits/edit/{{produit.id}}"class="btn btn-warning">Modifier</a></td>
-                        <td><button class="btn btn-danger" (click)="delateProduit(produit.id)" > Supprimer</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div *ngIf="produits.length > 0; ">
+            <h3>Liste des produits</h3>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Catégorie</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let produit of produits">
+                            <td class="align-middle" style="padding: 10px;">
+                                <img [src]="produit.image ? baseURL + 'storage/files/' + produit.image : '../../assets/images/default-avatar.jpg'"
+                                    class="card-img-top" alt="..." style="max-width: 100px; max-height: 100px;">
+                            </td>
+                            <td class="align-middle">{{ produit.name }}</td>
+                            <td class="align-middle">{{ produit.prix }}</td>
+                            <td class="align-middle">{{ produit.quantite }}</td>
+                            <td class="align-middle">{{ produit.description }}</td>
+                            <td class="align-middle">{{ produit.categorienamme }}</td>
+                            <td class="align-middle">
+                                <a routerLink="/produits/{{ produit.id }}" class="btn btn-success">Détail</a>
+                            </td>
+                            <td class="align-middle">
+                                <a routerLink="/produits/edit/{{ produit.id }}" class="btn btn-warning">Modifier</a>
+                            </td>
+                            <td class="align-middle">
+                                <button class="btn btn-danger" (click)="confirmDelete(produit.id)" [disabled]="isWaitingDelete">Supprimer</button>
+                            </td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <!-- <div *ngFor="let produit of produits">
+            <h4>{{ produit.name }}</h4>
+            <p>{{ produit.description }}</p>
+            <p>{{ produit.prix }}</p>
+            <button (click)="addToPanier(produit)">Ajouter au panier</button>
+          </div> -->
+        <div *ngIf="isWaitingDelete">
+            <span class="spinner-border" role="status"></span>
+            <!-- <h4>Suppression ... Veuillez patienter </h4> -->
         </div>
-    
-        
-       
-        <ng-template #noContacts>
-            <p class="alert alert-warning">
-                No contact found!
-            </p>
-           
-        </ng-template>
+        <div [hidden]="!isWaiting">
+            <div class="spinner-border" role="status"></div>
 
-    </div>
-
+            <ng-template #noContacts>
+                <p class="alert alert-warning">
+                    Aucun contact trouvé !
+                </p>
+                <div *ngIf="errMsg" class="alert alert-danger">
+                    <strong>Erreur! </strong>{{errMsg}}
+                </div>
+            </ng-template>
+ 
