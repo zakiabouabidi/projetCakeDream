@@ -10,6 +10,7 @@ import { DetailProduitComponent } from './detail-produit/detail-produit.componen
 import { DetailCategorieComponent } from './detail-categorie/detail-categorie.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { PanierComponent } from './panier/panier.component';
+import { CommandeComponent } from './commande/commande.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:'categories/edit',component:EditCategorieComponent},
   {path:'categories/edit/:id',component:EditCategorieComponent},
   { path: 'categories/:id', component: DetailCategorieComponent },
+  {path:'commandes',component:CommandeComponent},
   {path:'signin',component:SigninComponent},
   {path:'**', component:NotfoundComponent}
   // {path:'',redirectTo:'/produits',pathMatch:'full'}

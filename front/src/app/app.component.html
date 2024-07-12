@@ -1,6 +1,5 @@
 <!-- app.component.html -->
 
-<div class="container">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
     <a class="navbar-brand" routerLink="/">{{ title | uppercase }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -19,6 +18,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/categories" routerLinkActive="active">Categorie</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/commandes" routerLinkActive="active">commande</a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -35,18 +37,59 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            Account
+            Nom de client
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" routerLink="/signin">Sign In</a>
-            <a class="dropdown-item" routerLink="/signup">Sign Up</a>
+            <a class="dropdown-item" routerLink="/signin">Connecter</a>
+            <a class="dropdown-item" routerLink="/signup">Registrer</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="btn btn-danger">Sign Out</a>
+          <a class="btn btn">Deconnecter</a>
         </li>
       </ul>
     </div>
   </nav>
   <router-outlet></router-outlet>
-</div>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h2>The Cake Shop</h2>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">À propos de nous</a></li>
+            <li><a href="#">Produit</a></li>
+            <li><a href="#">Categorie</a></li>
+            <li><a href="#">Contact us</a></li>
+            
+          
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h2>Nous acceptons les commandes</h2>
+          
+        </div>
+        <div class="footer-section">
+          <h2>Contactez - nous</h2>
+          <p>Entre (8:30 AM – 11:30 PM)</p>
+          <p><i class="fa fa-phone"></i> +216500000</p>
+        </div>
+        <div class="footer-section">
+          <h2>Suivez Nous</h2>
+          <p>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Copyright © all rights reserved 2024 <a href="https://kensoftware.com">Kensoftware</a></p>
+      </div>
+    </div>
+  </footer>
+  

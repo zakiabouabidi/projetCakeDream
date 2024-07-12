@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Produit } from '../models/produit';
 import { ProduitsService } from '../services/produits.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PanierService } from '../services/panier.service';
 
 @Component({
   selector: 'app-detail-produit',
@@ -15,6 +16,7 @@ export class DetailProduitComponent implements OnInit {
   errName: string="";
 // Utiliser ActivatedRoute pour obtenir les paramètres d'URL 
   constructor(private produitService: ProduitsService,
+    private panierService: PanierService,
     private router: Router,private route: ActivatedRoute ,@Inject('baseURL') public baseURL:any) { }
   ngOnInit(): void {
     // Récupérer l'ID du paramètre d'URL
@@ -31,5 +33,8 @@ export class DetailProduitComponent implements OnInit {
   onAddProduit() {
     this.router.navigateByUrl('/produits/edit')
   }
-
+  addToPanier(produit: Produit) {
+    this.panierService.addToPanier(produit);
+   
+  }
 }

@@ -16,6 +16,7 @@ import { EditCategorieComponent } from './edit-categorie/edit-categorie.componen
 import { CategorieComponent } from './categorie/categorie.component';
 import { BaseURL } from './models/baseUrl';
 import { PanierComponent } from './panier/panier.component';
+import { CommandeComponent } from './commande/commande.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PanierComponent } from './panier/panier.component';
     EditCategorieComponent,
     DetailProduitComponent,
     DetailCategorieComponent,
-    PanierComponent
+    PanierComponent,
+    CommandeComponent
   ],
   imports: [
     BrowserModule,

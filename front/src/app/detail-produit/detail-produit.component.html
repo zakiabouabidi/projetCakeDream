@@ -16,6 +16,10 @@
                     <li class="list-group-item"><strong>description : </strong>{{produit.description}}</li>
                     <li class="list-group-item"><strong>Categorie : </strong>{{produit.categorienamme}}</li>
                 </ul>
+
+                <button class="btn btn-info" (click)="addToPanier(produit)" >
+                   Ajouter au Panier
+                </button>
             </div>
         </div>
         <ng-template #noContacts>
@@ -23,6 +27,4 @@
         </ng-template>
     </div>
 </div>
-<button class="btn btn-info" (click)="onAddProduit()" >
-    ajout Produit
-</button>
+
