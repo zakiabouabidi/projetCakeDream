@@ -3,6 +3,7 @@ package com.example.cakedreamstore.web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,7 @@ import com.example.cakedreamstore.exception.DuplicateCategorieException;
 import com.example.cakedreamstore.web.dto.CategorieSummaryDTO;
 import com.example.cakedreamstore.web.dto.ProduitSummaryDTO;
 @RestController
-
+  
 @RequestMapping("/api/categories")
 
 public class CategorieController {
@@ -35,6 +36,7 @@ public class CategorieController {
     }
 
      @GetMapping()
+     
     public ResponseEntity<?> getAllCategorie() {
  List<CategorieSummaryDTO> categories = this.categorieService.getAllCategorie()
                 .stream()
@@ -45,6 +47,7 @@ public class CategorieController {
     }
    
          @GetMapping("/{id}")
+     
      public ResponseEntity<?> getCategorieById(@PathVariable Long id) throws Exception {
         CategorieSummaryDTO categorie = CategorieSummaryDTO.toCategorieSummaryDTO(this.categorieService.getCategorieById(id));
         return new ResponseEntity<>(categorie, HttpStatus.OK);
@@ -52,6 +55,7 @@ public class CategorieController {
     }
 
     @PostMapping()
+   
     public ResponseEntity<?> addCategorie(@RequestBody CategorieSummaryDTO categorieSummaryDTO) throws  DuplicateCategorieException{
          Categorie categorie = CategorieSummaryDTO.fromCategorieSummaryDTO(categorieSummaryDTO);
         return new ResponseEntity<>(this.categorieService.addCategorie(categorie), HttpStatus.CREATED);
@@ -67,6 +71,8 @@ public class CategorieController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('DELETE_PRIVILEGE') and hasRole('ADMIN')")
+   
    public ResponseEntity<?> deleteCategorieById(@PathVariable Long id) {
         this.categorieService.deleteCategorieById(id);
         return new ResponseEntity<>( HttpStatus.NO_CONTENT);

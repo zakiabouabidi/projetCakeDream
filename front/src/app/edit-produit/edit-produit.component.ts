@@ -2,10 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProduitsService } from '../services/produits.service';
 import { NgForm } from '@angular/forms';
-import { Produit } from '../models/produit';
+import { Produit } from '../shared/produit';
 import { from } from 'rxjs';
 import { CategorieService } from '../services/categorie.service';
-import { Categorie } from '../models/categorie';
+import { Categorie } from '../shared/categorie';
 import { FileUploadService } from '../services/file-upload.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
@@ -57,7 +57,7 @@ export class EditProduitComponent implements OnInit{
   onSubmit(){
       //ajout
       if(this.produit.id==null){
-        this.produit.categorieID = this.produit.categorieID; // Assurez-vous que c'est bien un nombre si nécessaire
+       // this.produit.categorieID = this.produit.categorieID; 
 
          this.produiService.addonAddProduit(this.produit).subscribe({
         next:(produit:Produit)=>{
@@ -67,7 +67,7 @@ export class EditProduitComponent implements OnInit{
           
         error:(error)=>{
           this.errName = error.message;
-          console.log("error")},
+          },
         complete: ()=>console.log("fin")
       });
       
@@ -79,7 +79,7 @@ export class EditProduitComponent implements OnInit{
           this.upload(produit);},
         error:(error)=>{
           this.errName = error.message;
-          console.log("error")},
+     },
         complete: ()=>console.log("fin")
       });
     }

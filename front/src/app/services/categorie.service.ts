@@ -1,5 +1,5 @@
 import { Inject, Injectable, OnInit } from '@angular/core';
-import { Categorie } from '../models/categorie';
+import { Categorie } from '../shared/categorie';
 import { Observable, catchError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProcessHttpmsgService } from './process-httpmsg.service';
@@ -9,7 +9,7 @@ import { ProcessHttpmsgService } from './process-httpmsg.service';
 })
 export class CategorieService {
   //private baseUtRL = 'http://localhost:3000/api/categories';
-  constructor(private httpClient:HttpClient, @Inject('baseURL') public baseURL:any,
+  constructor(private http: HttpClient, @Inject('baseURL') public baseURL:any,
   private processHTTPMsgService : ProcessHttpmsgService) { }
  
   categories:Categorie[]=[];
@@ -21,28 +21,28 @@ export class CategorieService {
   
   
   getAllCategories():Observable<Categorie[]>{
-    return this.httpClient.get<Categorie[]>(this.baseURL+"categories").pipe
+    return this.http.get<Categorie[]>(this.baseURL+"categories").pipe
     (catchError(this.processHTTPMsgService.handleError));
   }
     
   getCategorieById(id:number):Observable<Categorie>{
-    return this.httpClient.get<Categorie>(this.baseURL+"categories/"+id)
+    return this.http.get<Categorie>(this.baseURL+"categories/"+id)
   }
 addonAddCategorie(categorie:Categorie):Observable<Categorie>{
  
-  return this.httpClient.post<Categorie>(this.baseURL+"categories",categorie,this.httpOptions)
+  return this.http.post<Categorie>(this.baseURL+"categories",categorie,this.httpOptions)
 }
 
 
 updateCategorie(categorie:Categorie):Observable<Categorie>{
  
-  return this.httpClient.put<Categorie>(this.baseURL+"categories/"+categorie.id,categorie,this.httpOptions)
+  return this.http.put<Categorie>(this.baseURL+"categories/"+categorie.id,categorie,this.httpOptions)
 }
 
   // delateCategorie(id:number):Observable<any>{
   //   return this.httpClient.delete<any>(`${this.baseURL}/${id}`);
   //   }
     delateCategorie(id:number):Observable<any>{
-      return this.httpClient.delete<any>(this.baseURL+"categories/"+id)
+      return this.http.delete<any>(this.baseURL+"categories/"+id)
     }
 }

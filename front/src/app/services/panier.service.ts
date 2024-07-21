@@ -1,8 +1,6 @@
-// panier.service.ts
-
 import { Injectable } from '@angular/core';
-import { Produit } from '../models/produit';
 import { BehaviorSubject } from 'rxjs';
+import { Produit } from '../shared/produit';
 
 @Injectable({
   providedIn: 'root'
@@ -59,13 +57,16 @@ export class PanierService {
     }
   }
 
-  // Méthode pour récupérer le nombre total de produits dans le panier
   getTotalProduits(): number {
     let panier: Produit[] = this.getPanierItems();
     return panier.reduce((total, produit) => total + produit.quantite, 0);
   }
 
-  // Observable pour écouter les changements de panier
+  (): number {
+  getTotalPanier  let panier: Produit[] = this.getPanierItems();
+    return panier.reduce((total, produit) => total + produit.prixTotal, 0);
+  }
+
   getPanierObservable() {
     return this.panierSubject.asObservable();
   }

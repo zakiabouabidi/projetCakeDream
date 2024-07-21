@@ -9,6 +9,7 @@ import com.example.cakedreamstore.exception.DuplicateCategorieException;
 
 
 public interface CategorieService {
+    
  List<Categorie> getAllCategorie();
 Categorie getCategorieById(Long id) throws Exception ;
 //create

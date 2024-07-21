@@ -1,8 +1,8 @@
 
 
 import { Inject, Injectable } from '@angular/core';
-import { Produit } from '../models/produit';
-import { Categorie } from '../models/categorie';
+import { Produit } from '../shared/produit';
+import { Categorie } from '../shared/categorie';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
 import { ProcessHttpmsgService } from './process-httpmsg.service';

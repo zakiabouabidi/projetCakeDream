@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { CategorieService } from '../services/categorie.service';
-import { Categorie } from '../models/categorie';
+import { Categorie } from '../shared/categorie';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-categorie',
@@ -16,9 +18,12 @@ idCategorie:any;
 errMsg!:string;
 isWaiting:boolean=true;
 isWaitingDelete: boolean = false;
+showAdminFn = false;
+authUserSub!: Subscription; 
 constructor(private router:Router,
   private categorieService: CategorieService,
-  private route:ActivatedRoute,@Inject('baseURL') public baseURL:any){}
+  private route:ActivatedRoute,@Inject('baseURL') public baseURL:any,
+  private authService: AuthService){}
 
   ngOnInit(): void {
     this.categorieService.getAllCategories().subscribe({
@@ -26,6 +31,20 @@ constructor(private router:Router,
       error:(err)=>{this.categories=[],this.isWaiting=false, this.errMsg=err}
      })
     this.idCategorie= this.route.snapshot.params['id'];
+
+    this.authUserSub=this.authService.AuthenticatedUser$.subscribe({
+      next: user => {
+        // If user is authenticated
+        if (user) {
+          // Show admin Fn if user has admin role
+          this.showAdminFn = user.role.name === 'ROLE_ADMIN';
+          console.log(this.showAdminFn);
+
+        } else {
+          this.showAdminFn = false;
+        }
+      }
+    })
   } 
 
   onAddCategorie() {

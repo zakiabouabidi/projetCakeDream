@@ -41,7 +41,7 @@ public class ProduitServiceImpl implements ProduitService {
         return this.produitRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("produit with id: " + id + " not found"));
     }
-
+ 
     @Override
     public Produit addProduit(Produit produit) {
         if (produit == null) {
@@ -49,9 +49,9 @@ public class ProduitServiceImpl implements ProduitService {
         }
         return this.produitRepository.save(produit);
     }
-
+ 
     @Override
-    public Produit updateProduit(Long id, Produit produit) {
+    public Produit updateProduit(Long id, Produit produit) { 
         // Vérifier que l'ID et le produit ne sont pas nuls
         if (id == null || produit == null) {
             throw new IllegalArgumentException("ID et produit ne peuvent pas être null");

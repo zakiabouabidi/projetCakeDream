@@ -48,9 +48,9 @@ public class ProduitController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> addProduit(@RequestBody ProduitSummaryDTO categorieSummaryDTO) throws Exception {
-        Produit produit = ProduitSummaryDTO.fromProduitSummaryDTO(categorieSummaryDTO);
-        Categorie categorie = categorieService.getCategorieById(categorieSummaryDTO.categorieID());
+     public ResponseEntity<?> addProduit(@RequestBody ProduitSummaryDTO produitSummaryDTO) throws Exception {
+        Produit produit = ProduitSummaryDTO.fromProduitSummaryDTO(produitSummaryDTO);
+        Categorie categorie = categorieService.getCategorieById(produitSummaryDTO.categorieID());
         produit.setCategorie(categorie);
         Produit savedProduct =this.produitService.addProduit( produit);
 
@@ -59,9 +59,9 @@ public class ProduitController {
 
     @PutMapping("/{id}")
 
-    public ResponseEntity<?> updateProduit(@PathVariable Long id, @RequestBody ProduitSummaryDTO categorieSummaryDTO)throws Exception {
-        Produit produit = ProduitSummaryDTO.fromProduitSummaryDTO(categorieSummaryDTO);
-        Categorie categorie = categorieService.getCategorieById(categorieSummaryDTO.categorieID());
+    public ResponseEntity<?> updateProduit(@PathVariable Long id, @RequestBody ProduitSummaryDTO produitSummaryDTO)throws Exception {
+        Produit produit = ProduitSummaryDTO.fromProduitSummaryDTO(produitSummaryDTO);
+        Categorie categorie = categorieService.getCategorieById(produitSummaryDTO.categorieID());
         produit.setCategorie(categorie);
         Produit savedProduct =this.produitService.updateProduit(id, produit);
 
@@ -72,9 +72,9 @@ public class ProduitController {
     // il faut faire appel à ProduitDto pas a Produit pour eviter l'erreur d'affichage de details de tt categories
     // @PutMapping("/{id}")
 
-    // public ResponseEntity<?> updateProduit(@PathVariable Long id, @RequestBody ProduitSummaryDTO categorieSummaryDTO)throws Exception {
-    //     Produit produit = ProduitSummaryDTO.fromProduitSummaryDTO(categorieSummaryDTO);
-    //     Categorie categorie = categorieService.getCategorieById(categorieSummaryDTO.categorieID());
+    // public ResponseEntity<?> updateProduit(@PathVariable Long id, @RequestBody ProduitSummaryDTO produitSummaryDTO)throws Exception {
+    //     Produit produit = ProduitSummaryDTO.fromProduitSummaryDTO(produitSummaryDTO);
+    //     Categorie categorie = categorieService.getCategorieById(produitSummaryDTO.categorieID());
     //     produit.setCategorie(categorie);
     //     Produit savedProduct =this.produitService.updateProduit(id, produit);
 

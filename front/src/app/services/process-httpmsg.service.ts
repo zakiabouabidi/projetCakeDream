@@ -9,14 +9,13 @@ export class ProcessHttpmsgService {
 
   constructor() { }
 
-  handleError(error:HttpErrorResponse|any){
+  public handleError(error:HttpErrorResponse|any){
     let errMsg:string;
-    //error side client
+    //(Client side error)
     if(error.error instanceof ErrorEvent){
       errMsg=error.error.message
-    }else{
-      //server side error
-      errMsg=`Une erreur s'est produite avec le serveur JSON. Veuillez réessayer plus tard ${error.message|| ''}`
+    }else{ //Server side error
+      errMsg=`Json server Error: An error has occured. please try again later-${error.message || ''}`
     }
     return throwError(()=>errMsg)
   }

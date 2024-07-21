@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Produit } from '../models/produit';
+import { Produit } from '../shared/produit';
 import { ProduitsService } from '../services/produits.service';
-import { Categorie } from '../models/categorie';
+import { Categorie } from '../shared/categorie';
 import { PanierService } from '../services/panier.service';
 
 @Component({

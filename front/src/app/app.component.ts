@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 import { PanierService } from './services/panier.service';
 
 @Component({
@@ -7,16 +9,21 @@ import { PanierService } from './services/panier.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
- title = 'Cake Dream';
+
   totalProduitsPanier: number = 0;
 
-  constructor(private panierService: PanierService) { }
+  // Injecting AuthService and Router into the component
+  constructor(private authService: AuthService, private router:Router,private panierService: PanierService) { }
 
+  // Initialization logic
   ngOnInit(): void {
-    // Souscrire aux changements dans le panier pour mettre à jour le nombre de produits affiché
     this.panierService.getPanierObservable().subscribe(panier => {
       this.totalProduitsPanier = this.panierService.getTotalProduits();
     });
+   
   }
- 
+
+  // Sign out logic
+  onSignOut() {
+  }
 }
