@@ -20,6 +20,7 @@ import { CommandeComponent } from './commande/commande.component';
 import { AdminComponent } from './admin/admin.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpInterceptor } from './services/http.interceptor.service';
+import { AproposComponent } from './apropos/apropos.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpInterceptor } from './services/http.interceptor.service';
     PanierComponent,
     CommandeComponent,
     AdminComponent,
-    SignupComponent
+    SignupComponent,
+    AproposComponent
   ],
   imports: [
     BrowserModule,
