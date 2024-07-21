@@ -1,0 +1,116 @@
+.navbar {
+    background: linear-gradient(to right, #ea27b3, #6A0DAD); /* Dégradé de violet */
+  }
+  
+  .navbar-brand {
+    color: white; /* Couleur du texte de la marque */
+    font-size: 1.5rem; /* Taille de la police de la marque */
+  }
+  
+  .navbar-nav .nav-item a {
+    color: rgb(255, 255, 255); /* Couleur du texte des liens de navigation */
+    font-size: 1rem; /* Taille de la police des liens de navigation */
+    padding: 0.5rem 1rem; /* Espacement autour des liens */
+    text-transform: uppercase; /* Convertir le texte en majuscules */
+  }
+  
+  .navbar-nav .nav-item a:hover {
+    background-color: #c5a1e5; /* Couleur violette plus foncée au survol des liens */
+  }
+  
+  .form-control {
+    width: 300px; /* Largeur du champ de recherche */
+  }
+  .btn-outline-success {
+    color: #c60000;
+    border-color: #28a745;
+    background-color: #28a745;
+  }
+  .footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    color: #5a5a5a;
+    font-family: Arial, sans-serif;
+  }
+  
+  .footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-section {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .footer-section h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #e6007e;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 5px;
+  }
+  
+  .footer-section ul li a {
+    text-decoration: none;
+    color: #5a5a5a;
+  }
+  
+  .footer-section ul li a:hover {
+    color: #e6007e;
+  }
+  
+  .footer-section p {
+    margin: 10px 0;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    background-color: #ffb6c1;
+    width: 100%;
+    padding: 10px 0;
+    color: #fff;
+  }
+  
+  .footer-bottom a {
+    color: #ffb6c1;
+    text-decoration: none;
+  }
+  
+  .footer-bottom a:hover {
+    color: #fff;
+  }
+  
+  .footer-section i {
+    margin-right: 8px;
+  }
+  
+  .footer-section a i {
+    font-size: 20px;
+    color: #5a5a5a;
+    margin-right: 10px;
+  }
+  
+  .footer-section a i:hover {
+    color: #e6007e;
+  }
+  .mb-5, .my-5 {
+    margin-bottom: 0rem !important
+  }

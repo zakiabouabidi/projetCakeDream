@@ -65,6 +65,9 @@ export class ProduitsComponent implements OnInit{
    //pour url externe 
    //window.location.href='https://www.google.com';
   }
- 
+  addToPanier(produit: Produit) {
+    this.panierService.addToPanier(produit);
+   
+  }
 
 }

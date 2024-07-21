@@ -17,10 +17,13 @@ import { CategorieComponent } from './categorie/categorie.component';
 import { BaseURL } from './shared/baseUrl';
 import { PanierComponent } from './panier/panier.component';
 import { CommandeComponent } from './commande/commande.component';
+<<<<<<< HEAD
 import { AdminComponent } from './admin/admin.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpInterceptor } from './services/http.interceptor.service';
 import { AproposComponent } from './apropos/apropos.component';
+=======
+>>>>>>> 7016be8b73be5f7c8b22166739704b1b8df6a27b
 
 @NgModule({
   declarations: [
@@ -35,10 +38,14 @@ import { AproposComponent } from './apropos/apropos.component';
     DetailProduitComponent,
     DetailCategorieComponent,
     PanierComponent,
+<<<<<<< HEAD
     CommandeComponent,
     AdminComponent,
     SignupComponent,
     AproposComponent
+=======
+    CommandeComponent
+>>>>>>> 7016be8b73be5f7c8b22166739704b1b8df6a27b
   ],
   imports: [
     BrowserModule,

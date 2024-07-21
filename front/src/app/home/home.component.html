@@ -1,4 +1,81 @@
 
+<!-- Carousel-->
+<div id="carouselExampleFade" class="carousel slide carousel-fade">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/images/carousels/carousel1.jpg" style="height: 466px;"class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/carousels/carousel2.jpg" style="height: 466px;"class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img  src="assets/images/carousels/carousel1.jpg" style="height: 466px;"class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- <section>
+  
+    <carousel [interval]="4000" [noPause]="true">
+      <slide>
+        <img src="assets/images/carousels/carousel1.jpg" alt="first slide" style="display: block; width: 100%;">
+        <div class="carousel-caption">
+          <h1>Testing.</h1>
+        </div>
+      </slide>
+      <slide>
+        <img src="assets/images/carousels/carousel2.jpg" alt="second slide" style="display: block; width: 100%;">
+        <div class="carousel-caption">
+          <h1>Cooking.</h1>
+        </div>
+      </slide>
+      <slide>
+        <img src="assets/images/carousels/carousel1.jpg" alt="third slide" style="display: block; width: 100%;">
+        <div class="carousel-caption">
+          <h1>Tasting.</h1>
+        </div>
+      </slide>
+    </carousel>
+  
+  </section>
+   -->
+  <!-- <div class="text-carusel">
+  
+                      <h1 class="mb-5">Cooking.<br>Tasting.<br>Living.</h1>
+                      <a class="btn_carousel" href="/shop/ProductList">Check Our Menu</a>
+                  </div>
+   -->
+  
+  
+  <!-- Categories des produits-->
+   <section>
+    <div class="container">
+      <h2>Category cake</h2>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let item of items">
+          <div class="card">
+            <img [src]="item.imgSrc" alt="{{item.title}}" class="card-img-top">
+            <div class="card-body text-center">
+              <h5 class="card-title">Cheesecake</h5>
+              <a href="#" class="btn btn-primary"  routerLink="/produits" >Voir Plus</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  
+<!-- 
 <h1 class="text-center">Nos Produits</h1>
     <div class="row">
         <div class="col-md-4 mt-3" *ngFor="let produit of produits.slice(0, 6)">
@@ -28,11 +105,11 @@
 
     <div class="row">
         <div class="col-md-4 mt-3" *ngFor="let categorie of categories">
-            <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card bg-light mb-3" style="max-width: 18rem;"> -->
                 <!-- <div class="card-header">
                     <img class="card-img-top" src="{{ 'baseURL' + categorie.image }}" alt="{{ categorie.name_Categorie }}">
                 </div> -->
-                <div class="card-body">
+           <!--      <div class="card-body">
                     <p class="card-text">{{ categorie.name_Categorie }}</p>
                     <p class="card-text">Description: {{ categorie.description }}</p>
                     <p class="card-text">
@@ -44,3 +121,4 @@
         </div>
     </div>
 
+ -->
